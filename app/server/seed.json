@@ -1,0 +1,11 @@
+{
+  "korean": [
+    {
+      "stem": "가다",
+      "definition": "to go",
+      "polite_present": "가요",
+      "polite_past": "갔아요",
+      "polite_future": "갈거예요"
+    }
+  ]
+}
