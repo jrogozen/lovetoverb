@@ -6,6 +6,13 @@
       "polite_present": "가요",
       "polite_past": "갔아요",
       "polite_future": "갈거예요"
+    },
+    {
+      "stem": "먹디",
+      "definition": "to eat",
+      "polite_present": "먹어요",
+      "polite_past": "먹었어요",
+      "polite_future": "먹을거예요"
     }
   ]
 }

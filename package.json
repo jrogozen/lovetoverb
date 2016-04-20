@@ -4,7 +4,8 @@
   "description": "verb conjugation tester",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=production node app/server",
+    "start-dev": "nodemon app/server"
   },
   "author": "jon rogozen",
   "license": "MIT",

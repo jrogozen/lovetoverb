@@ -1,5 +1,5 @@
-/*
-  export: {
-    korean: koreanVerbs
-  }
-*/
+import korean from './koreanVerbs'
+
+export default {
+  korean
+}
