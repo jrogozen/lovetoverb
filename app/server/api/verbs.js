@@ -8,6 +8,30 @@ export default function verbs(router) {
 
   })
 
+  router.get('/verbs', (req, res, next) => {
+    const { language, limit, tense, formality } = req.query;
+
+    // query for languageId
+
+    query('SELECT * from verbs WHERE language_id = 1 ORDER BY random() LIMIT 1')
+      .then((data) => {
+        if (data && !_.isEmpty(data.rows)) {
+          res.send({
+            success: true,
+            data: data.rows
+          })
+        } else {
+          throw new Error('No matching verbs found')
+        }
+      })
+      .catch((err) => {
+        res.send({
+          success: false,
+          error: err
+        })
+      })
+  })
+
   router.get('/verbs/:id', (req, res, next) => {
     const { id } = req.params
 

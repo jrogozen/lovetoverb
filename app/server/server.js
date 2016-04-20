@@ -15,7 +15,7 @@ const DEBUG = process.env.NODE_ENV !== 'production'
 const server = express()
 
 server.set('env', DEBUG ? 'development' : 'production')
-server.set('port', process.env.PORT || 3000)
+server.set('port', process.env.PORT || 8080)
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({ extended: false }))
 server.use(cookieParser())
