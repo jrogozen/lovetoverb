@@ -1,6 +1,7 @@
 import _ from 'lodash'
 
 import * as Verbs from '../models/verbs'
+import * as Tenses from '../models/tenses'
 import { query } from '../db'
 
 export default function verbs(router) {
@@ -9,19 +10,18 @@ export default function verbs(router) {
   })
 
   router.get('/verbs', (req, res, next) => {
-    const { language, limit, tense, formality } = req.query;
+    let { language, limit } = req.query;
+    let languageId;
 
-    // query for languageId
+    limit = limit || 20
+    language = language || 'korean'
 
-    query('SELECT * from verbs WHERE language_id = 1 ORDER BY random() LIMIT 1')
+    query(`SELECT * from languages WHERE name = '${language}'`)
       .then((data) => {
         if (data && !_.isEmpty(data.rows)) {
-          res.send({
-            success: true,
-            data: data.rows
-          })
+          languageId = data.rows[0].id;
         } else {
-          throw new Error('No matching verbs found')
+          throw new Error('No matching language found')
         }
       })
       .catch((err) => {
@@ -29,6 +29,25 @@ export default function verbs(router) {
           success: false,
           error: err
         })
+      })
+      .then(() => {
+        query(`SELECT * from verbs WHERE language_id = ${languageId} ORDER BY random() LIMIT ${limit}`)
+          .then((data) => {
+            if (data && !_.isEmpty(data.rows)) {
+              res.send({
+                success: true,
+                data: data.rows
+              })
+            } else {
+              throw new Error('No matching verbs found')
+            }
+          })
+          .catch((err) => {
+            res.send({
+              success: false,
+              error: err
+            })
+          })
       })
   })
 
