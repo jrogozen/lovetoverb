@@ -6,7 +6,8 @@ import { query } from '../db'
 
 export default function verbs(router) {
   router.post('/verbs', (req, res, next) => {
-
+    // todo: needs authentication logic
+    // use seed data for now
   })
 
   router.get('/verbs', (req, res, next) => {

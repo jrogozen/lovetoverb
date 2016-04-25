@@ -6,6 +6,7 @@ import morgan from 'morgan'
 import path from 'path'
 
 import api from './api'
+import renderer from './middleware/renderer'
 
 require('./db')
 
@@ -29,6 +30,7 @@ if (DEBUG) {
 }
 
 server.use('/api', api)
+server.use(renderer)
 
 server.listen(server.get('port'), () => {
   console.info(`Server running in ${server.get('env')} on port ${server.get('port')}`)
