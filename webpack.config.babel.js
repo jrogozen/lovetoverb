@@ -1,13 +1,12 @@
 import path from 'path'
 import webpack from 'webpack'
 
-export default {
+module.exports = {
   devtool: 'eval-source-map',
   entry: [
     'babel-polyfill',
     'webpack-hot-middleware/client',
-    // todo: don't actually want to bundle any of the SSR only code (api)
-    // path.join(__dirname, 'app', 'server', 'server')
+    path.join(__dirname, 'app', 'client', 'index.js')
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -37,17 +36,17 @@ export default {
         test: /\.js$/,
         loader: 'babel',
         exclude: /node_modules/,
-        include: path.join(__dirname, '..')
+        include: path.join(__dirname)
       },
       {
         test: /\.json$/,
         loader: 'json'
       },
-      {
-        test: /\.scss$/,
-        loader: 'style-loader!css-loader!postcss-loader!sass-loader',
-        include: path.join(__dirname, '..')
-      },
+      // {
+      //   test: /\.scss$/,
+      //   loader: 'style-loader!css-loader!postcss-loader!sass-loader',
+      //   include: path.join(__dirname)
+      // },
       {
         test: /\.(jpe?g|png|gif|svg)$/, 
         loader: 'url', 

@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 const FrontPage = React.createClass({
   render: function() {
     return (
-      <div id="FrontPage container">
-        <h2>Front Page</h2>
+      <div className="FrontPage container">
+        <h2>Front Pages</h2>
       </div>
     )
   }

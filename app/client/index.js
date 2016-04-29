@@ -16,6 +16,8 @@ function createElement(Component, props) {
   props = _.assign(props, {
     store
   })
+
+  return <Component {...props} />
 }
 
 render(
