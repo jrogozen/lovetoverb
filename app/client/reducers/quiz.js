@@ -2,7 +2,8 @@ const initState = () => ({
   isPlaying: false,
   verbs: [],
   language: null,
-  currentVerb: 0,
+  conjugations: [],
+  currentVerbIndex: 0,
   correct: 0,
   wrong: 0
 })
@@ -11,17 +12,18 @@ const quiz = (state = initState(), action = {}) => {
   const { payload, type, error } = action
 
   switch (type) {
-    'START_QUIZ':
+    case 'START_QUIZ':
       return Object.assign(initState(), {
         isPlaying: true,
         verbs: payload.verbs,
-        language: payload.language
+        language: payload.language,
+        conjugations: payload.conjugations
       })
-    'RESET_QUIZ':
+    case 'RESET_QUIZ':
       return initState()
-    'NEXT_QUESTION': // frontend can handle whether next_question should be dispatched
+    case 'NEXT_QUESTION': // frontend can handle whether next_question should be dispatched
       return Object.assign(initState(), {
-        currentVerb: state.currentVerb + 1,
+        currentVerbIndex: state.currentVerbIndex + 1,
         correct: payload.correct ? state.correct + 1 : state.correct,
         wrong: payload.wrong ? state.wrong + 1 : state.wrong
       })

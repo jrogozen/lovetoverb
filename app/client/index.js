@@ -2,7 +2,7 @@
 import _ from 'lodash'
 import React from 'react'
 import { render } from 'react-dom'
-import { createStore } from 'redux'
+import configureStore from './configureStore'
 import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
 import App from './containers/App'
@@ -10,7 +10,9 @@ import rootReducer from './reducers'
 import routes from './routes'
 
 const initialState = window.__INITIAL_STATE__
-const store = createStore(rootReducer, initialState)
+const store = configureStore(initialState)
+
+window.store = store
 
 function createElement(Component, props) {
   props = _.assign(props, {
