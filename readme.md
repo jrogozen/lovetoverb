@@ -4,7 +4,6 @@ App
   FrontPage
   QuizPage
     QuizDisplayCard
-      VerbDisplay
       UserInputText
         Timer
       InputSubmit
