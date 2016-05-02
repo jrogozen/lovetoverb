@@ -6,7 +6,7 @@
       "type": "action",
       "present": "가요",
       "past": "갔아요",
-      "future": "갈거예요",
+      "future": "갈 거예요",
       "present_progressive": "",
       "past_progressive": "",
       "future_progressive": "",
@@ -19,11 +19,22 @@
       "future_can": ""
     },
     {
-      "stem": "먹디",
+      "stem": "먹다",
       "definition": "to eat",
-      "polite_present": "먹어요",
-      "polite_past": "먹었어요",
-      "polite_future": "먹을거예요"
+      "type": "action",
+      "present": "먹어요",
+      "past": "먹었어요",
+      "future": "먹을 거예요",
+      "present_progressive": "",
+      "past_progressive": "",
+      "future_progressive": "",
+      "imperative": "",
+      "negative_imperative": "",
+      "present_want": "",
+      "past_want": "",
+      "present_can": "",
+      "past_can": "",
+      "future_can": ""
     }
   ]
 }

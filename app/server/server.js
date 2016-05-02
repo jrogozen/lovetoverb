@@ -41,10 +41,10 @@ if (DEBUG) {
     }
   }))
 
-  server.use(require('webpack-hot-middleware')(compiler, {
-    log: console.log,
-    path: '/__webpack_hmr'
-  }))
+  // server.use(require('webpack-hot-middleware')(compiler, {
+  //   log: console.log,
+  //   path: '/__webpack_hmr'
+  // }))
 } else {
   server.use(express.static(path.resolve(__dirname, '../build')))
   server.use(morgan('combined'))

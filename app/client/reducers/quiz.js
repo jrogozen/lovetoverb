@@ -22,8 +22,15 @@ const quiz = (state = initState(), action = {}) => {
     case 'RESET_QUIZ':
       return initState()
     case 'NEXT_QUESTION': // frontend can handle whether next_question should be dispatched
-      return Object.assign(initState(), {
-        currentVerbIndex: state.currentVerbIndex + 1,
+      return Object.assign({}, state, {
+        currentVerbIndex: state.currentVerbIndex + 1
+      })
+    case 'END_QUIZ':
+      return Object.assign({}, state, {
+        isPlaying: false
+      })
+    case 'HANDLE_ANSWER':
+      return Object.assign({}, state, {
         correct: payload.correct ? state.correct + 1 : state.correct,
         wrong: payload.wrong ? state.wrong + 1 : state.wrong
       })

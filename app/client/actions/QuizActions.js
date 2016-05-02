@@ -22,5 +22,25 @@ export default {
           success: false
         }))
     }
+  },
+  submitAnswer: (correct) => {
+    return (dispatch, getState) => {
+      const state = getState()
+      const { quiz } = state
+
+      dispatch({
+        type: 'HANDLE_ANSWER',
+        payload: {
+          correct,
+          wrong: !correct
+        }
+      })
+
+      if (quiz.currentVerbIndex === quiz.verbs.length - 1) {
+        return dispatch({ type: 'END_QUIZ'})
+      } else {
+        return dispatch({ type: 'NEXT_QUESTION' })
+      }
+    }
   }
 }

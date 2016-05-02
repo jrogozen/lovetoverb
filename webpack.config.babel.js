@@ -5,7 +5,7 @@ module.exports = {
   devtool: 'eval-source-map',
   entry: [
     'babel-polyfill',
-    'webpack-hot-middleware/client',
+    // 'webpack-hot-middleware/client',
     path.join(__dirname, 'app', 'client', 'index.js')
   ],
   output: {
@@ -15,7 +15,7 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       __DEV__: true

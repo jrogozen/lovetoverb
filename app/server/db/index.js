@@ -15,7 +15,7 @@ function setup() {
   const promises = [
     query("DROP SCHEMA public CASCADE; CREATE SCHEMA public; GRANT ALL ON SCHEMA public TO postgres; GRANT ALL ON SCHEMA public TO public; COMMENT ON SCHEMA public IS 'standard public schema'"),
     query("CREATE TABLE languages(id SERIAL PRIMARY KEY not null, name TEXT not null)"),
-    query("CREATE TABLE verbs(id SERIAL PRIMARY KEY not null, language_id INTEGER references languages(id), stem TEXT not null, definition TEXT not null, polite_present TEXT, polite_past TEXT, polite_future TEXT)"),
+    query("CREATE TABLE verbs(id SERIAL PRIMARY KEY not null, language_id INTEGER references languages(id), stem TEXT not null, definition TEXT not null, present TEXT, past TEXT, future TEXT)"),
   ]
 
   return Promise.all(promises)
@@ -30,9 +30,10 @@ function seed() {
   // todo: investigate why this doesn't trigger Promise.all()
   _.forEach(seedData, (languageSet, language) => {
     languageSet.forEach((word) => {
+      console.log('pushing seed data', word);
       promises.push(
-        query(`INSERT INTO verbs(language_id, stem, definition, polite_present, polite_past, polite_future) values
-          (1, '${word.stem}', '${word.definition}', '${word.polite_present}', '${word.polite_past}', '${word.polite_future}')
+        query(`INSERT INTO verbs(language_id, stem, definition, present, past, future) values
+          (1, '${word.stem}', '${word.definition}', '${word.present}', '${word.past}', '${word.future}')
         `)
       )
     })
@@ -42,7 +43,8 @@ function seed() {
     .then(() => console.log(chalk.blue.bold('data successfully seeded')))
 }
 
-if (DEBUG) {
+// todo: separate db build npm command
+if (false && DEBUG) {
   setup().then(() => seed())
 }
 

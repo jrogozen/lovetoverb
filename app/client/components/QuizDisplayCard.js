@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import UserInputText from './UserInputText'
 
+import QuizActions from '../actions/QuizActions'
+
 const QuizDisplayCard = React.createClass({
   propTypes: {
     verb: React.PropTypes.object
@@ -12,8 +14,23 @@ const QuizDisplayCard = React.createClass({
       answerText: ''
     }
   },
-  pressHandler: function() {
-    alert(this.state.answerText)
+  submitHandler: function(event) {
+    const { conjugation, verb, dispatch } = this.props
+    const { answerText } = this.state
+
+    if (event.keyCode === 13) {
+      event.preventDefault()
+
+      this.setState({
+        answerText: ''
+      })
+
+      if (answerText === verb[conjugation]) {
+        dispatch(QuizActions.submitAnswer(true))
+      } else {
+        dispatch(QuizActions.submitAnswer(false))
+      }
+    }
   },
   render: function() {
     const { verb, conjugation } = this.props
@@ -32,13 +49,7 @@ const QuizDisplayCard = React.createClass({
               })
             }
           }
-          pressHandler={
-            (event) => {
-              if (event.keyCode === 13) {
-                alert(this.state.answerText)
-              }
-            }
-          }
+          pressHandler={this.submitHandler}
           text={answerText}
         />
         <button onClick={this.submitHandler}>Enter</button>
@@ -46,9 +57,5 @@ const QuizDisplayCard = React.createClass({
     )
   }
 })
-
-// const mapStateToProps = (state) => ({
-
-// })
 
 export default connect()(QuizDisplayCard)

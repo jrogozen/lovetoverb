@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import QuizDisplayCard from '../components/QuizDisplayCard'
+import QuizResults from '../components/QuizResults'
 
 import QuizActions from '../actions/QuizActions'
 
@@ -12,18 +13,24 @@ const QuizPage = React.createClass({
     dispatch(QuizActions.startQuiz())
   },
   render: function() {
-    const { verbs, language, currentVerbIndex, correct, wrong, conjugations } = this.props.quiz
+    const { verbs, language, currentVerbIndex, correct, wrong, conjugations, isPlaying } = this.props.quiz
     const currentVerb = verbs[currentVerbIndex]
     const selectedConjugation = conjugations[0];
+    console.log('rendering quiz page!!')
 
     return (
       <div className="QuizPage" id="QuizPage">
         Quiz Page
-        {currentVerb && (
+
+        {currentVerb && isPlaying && (
           <QuizDisplayCard
             verb={currentVerb}
             conjugation={selectedConjugation}
           />
+        )}
+
+        {currentVerb && !isPlaying && (
+          <QuizResults />
         )}
       </div>
     )
